@@ -1,14 +1,20 @@
-
+import Card from 'react-bootstrap/Card';
 
 function Expense(props) {
+
+  const cardStyles = {
+    width: "90%"
+  }
 
   const { name, price } = props.expense
   // console.log(props)
   return (
-    <div>
-      <h3>Gasto: {name}</h3>
-      <h3>Valor: {price}</h3>
-    </div>
+    <Card style={cardStyles}>
+      <Card.Body>
+        <Card.Title>{name}</Card.Title>
+        <Card.Text>Valor: {price}</Card.Text>
+      </Card.Body>
+    </Card>
   )
 }
 

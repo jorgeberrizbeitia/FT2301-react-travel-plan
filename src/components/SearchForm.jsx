@@ -1,5 +1,6 @@
 import { useState } from "react"
 
+import Form from 'react-bootstrap/Form';
 
 function SearchForm(props) {
 
@@ -18,9 +19,10 @@ function SearchForm(props) {
     <div>
 
       <h3>Formulario de busqueda</h3>
-      
-      <label htmlFor="search">Busca un Gasto: </label>
-      <input type="text" name="search" value={searchInput} onChange={handleSearch}/>
+      <Form.Group className="m-3">
+        <Form.Label htmlFor="search">Busca un Gasto: </Form.Label>
+        <Form.Control type="text" name="search" value={searchInput} onChange={handleSearch}/>
+      </Form.Group>
       {/* abajo es igual pero un una sola linea sin necesidad de la funcion declarada */}
       {/* <input type="text" name="search" value={searchInput} onChange={(event) => setSearchInput(event.target.value)}/> */}
 

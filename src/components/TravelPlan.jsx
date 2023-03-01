@@ -2,6 +2,12 @@ import { useState } from "react"
 import AddForm from "./AddForm"
 import Expense from "./Expense"
 import SearchForm from "./SearchForm"
+import Row from 'react-bootstrap/Row';
+
+// imports CSS
+import Button from "react-bootstrap/Button"
+import Col from "react-bootstrap/Col"
+import Collapse from "react-bootstrap/Collapse";
 
 const initialDataTest = [
   { name: "hotel", price: "80" },
@@ -45,7 +51,10 @@ function TravelPlan() {
     
     const filteredExpenses = expenses.filter((eachExpense) => {
       // if (eachExpense.name === searchInput) {
-      if ( eachExpense.name.includes(searchInput) ) {
+      let nameMin = eachExpense.name.toLowerCase()
+      let searchMin = searchInput.toLowerCase()
+
+      if ( nameMin.includes(searchMin) ) {
         return true // incluyelo
       } else {
         return false // no lo incluyas
@@ -74,26 +83,33 @@ function TravelPlan() {
 
       <h2>Plan de Gastos de Viaje</h2>
       
-      <button onClick={showForm}>Ver Formulario</button>
+      <Button variant="outline-warning" onClick={showForm}>Ver Formulario</Button>
       {/* <button onClick={() => setIsFormShowing(!isFormShowing)}>Ver Formulario</button> */}
 
       {/* forma sencilla */}
 
-      { isFormShowing === true ? <AddForm addNewExpense={addNewExpense}/> : null }
-      
+      {/* { isFormShowing === true ? <AddForm addNewExpense={addNewExpense}/> : null } */}
+      <Collapse in={isFormShowing}>
+        <div>
+          <AddForm addNewExpense={addNewExpense}/>
+        </div>
+      </Collapse>
 
       {/* forma avanzada */}
       {/* <AddForm setExpenses={setExpenses} setExpensesToDisplay={setExpensesToDisplay}/> */}
 
       <SearchForm filterExpenses={filterExpenses}/>
 
-
-      {expensesToDisplay.map((eachExpense) => {
-        // console.log(initialDataTest)
-        return (
-          <Expense key={eachExpense.name} expense={eachExpense} />
-        )
-      })}
+      <Row className="p-3">
+        {expensesToDisplay.map((eachExpense) => {
+          // console.log(initialDataTest)
+          return (
+            <Col sm key={eachExpense.name}>
+              <Expense expense={eachExpense} />
+            </Col>
+          )
+        })}
+      </Row>
 
 
     </div>

@@ -1,5 +1,8 @@
 import { useState } from "react"
 
+// imports CSS
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 function AddForm(props) {
 
@@ -78,22 +81,22 @@ function AddForm(props) {
   return (
     <div>
       
-      <form onSubmit={handleSubmitForm}>
+      <Form onSubmit={handleSubmitForm}>
+        <Form.Group className="m-3" >
+          <Form.Label htmlFor="name">Nombre de Gasto:</Form.Label>
+          <Form.Control type="text" name="name" value={nameInput} onChange={handleNameChange}/>
+        </Form.Group>
 
-        <label htmlFor="name">Nombre de Gasto:</label>
-        <input type="text" name="name" value={nameInput} onChange={handleNameChange}/>
 
-        <br />
+        <Form.Group className="m-3" >
+          <Form.Label htmlFor="price">Precio:</Form.Label>
+          <Form.Control type="number" name="price" value={priceInput} onChange={handlePriceChange}/>
+        </Form.Group>
 
-        <label htmlFor="price">Precio:</label>
-        <input type="number" name="price" value={priceInput} onChange={handlePriceChange}/>
-
-        <br />
-
-        <button onClick={handleSubmitForm}>Agregar</button>
+        <Button variant="outline-success" onClick={handleSubmitForm}>Agregar</Button>
         {/* el handleSubmitForm puede ir en el onSubmit del form o en el onClick del botton */}
 
-      </form>
+      </Form>
 
     </div>
   )
