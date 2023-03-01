@@ -13,6 +13,7 @@ function TravelPlan() {
 
   const [ expenses, setExpenses ] = useState(initialDataTest) // este es nuestro estado completo
   const [ expensesToDisplay, setExpensesToDisplay ] = useState(initialDataTest) // el estado a renderizar
+  const [ isFormShowing, setIsFormShowing ] = useState(false)
 
 
   const addNewExpense = (newExpense) => {
@@ -57,13 +58,29 @@ function TravelPlan() {
 
   }
 
+  const showForm = () => {
+    if (isFormShowing === true) {
+      setIsFormShowing(false)
+    } else {
+      setIsFormShowing(true)
+    }
+
+    // setIsFormShowing(!isFormShowing) // lo opuesto al valor booleano actual
+
+  }
+
   return (
     <div>
 
       <h2>Plan de Gastos de Viaje</h2>
       
+      <button onClick={showForm}>Ver Formulario</button>
+      {/* <button onClick={() => setIsFormShowing(!isFormShowing)}>Ver Formulario</button> */}
+
       {/* forma sencilla */}
-      <AddForm addNewExpense={addNewExpense}/>
+
+      { isFormShowing === true ? <AddForm addNewExpense={addNewExpense}/> : null }
+      
 
       {/* forma avanzada */}
       {/* <AddForm setExpenses={setExpenses} setExpensesToDisplay={setExpensesToDisplay}/> */}
