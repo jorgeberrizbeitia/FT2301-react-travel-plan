@@ -11,7 +11,8 @@ const initialDataTest = [
 
 function TravelPlan() {
 
-  const [ expenses, setExpenses ] = useState(initialDataTest)
+  const [ expenses, setExpenses ] = useState(initialDataTest) // este es nuestro estado completo
+  const [ expensesToDisplay, setExpensesToDisplay ] = useState(initialDataTest) // el estado a renderizar
 
 
   const addNewExpense = (newExpense) => {
@@ -27,6 +28,7 @@ function TravelPlan() {
     // setExpenses(stateClone)
 
     setExpenses([...expenses, newExpense])
+    setExpensesToDisplay([...expensesToDisplay, newExpense])
   }
 
   const filterExpenses = (searchInput) => {
@@ -41,15 +43,17 @@ function TravelPlan() {
     // })
     
     const filteredExpenses = expenses.filter((eachExpense) => {
-      if (eachExpense.name === searchInput) {
+      // if (eachExpense.name === searchInput) {
+      if ( eachExpense.name.includes(searchInput) ) {
         return true // incluyelo
       } else {
         return false // no lo incluyas
       }
     })
 
-    console.log(filteredExpenses)
-    setExpenses(filteredExpenses)
+    console.log(filteredExpenses) // []
+    // setExpenses(filteredExpenses)
+    setExpensesToDisplay(filteredExpenses) // modificamos el array segundario
 
   }
 
@@ -62,12 +66,12 @@ function TravelPlan() {
       <AddForm addNewExpense={addNewExpense}/>
 
       {/* forma avanzada */}
-      {/* <AddForm setExpenses={setExpenses}/> */}
+      {/* <AddForm setExpenses={setExpenses} setExpensesToDisplay={setExpensesToDisplay}/> */}
 
       <SearchForm filterExpenses={filterExpenses}/>
 
 
-      {expenses.map((eachExpense) => {
+      {expensesToDisplay.map((eachExpense) => {
         // console.log(initialDataTest)
         return (
           <Expense key={eachExpense.name} expense={eachExpense} />

@@ -59,6 +59,16 @@ function AddForm(props) {
 
     // })
 
+    // props.setExpensesToDisplay((expenses) => {
+
+    //   const stateClone = [...expenses]
+    //   stateClone.push(newExpense)
+    //   return stateClone
+
+    //   // return [...expenses, newExpense]
+
+    // })
+
     // limpiamos los campos desdes de crear el expense
     setNameInput("")
     setPriceInput(0)
